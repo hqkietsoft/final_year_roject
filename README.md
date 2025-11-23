@@ -89,20 +89,35 @@ The system is built upon a Large Language Model (LLM) fine-tuned specifically fo
 
 ### 1. Login Screen
 <p align="center">
-  <img src="static/images/demo_login.png" alt="Login Screen" width="600">
+  <img src="static/pic_finalproject/login.png" alt="Login Screen" width="600">
 </p>
 
-### 2. Dashboard
+### 2. Register Screen
 <p align="center">
-  <img src="static/images/demo_dashboard.png" alt="Dashboard" width="600">
+  <img src="static/pic_finalproject/register.png" alt="Register Screen" width="600">
 </p>
 
-### 3. Correction Result (Diff View)
+### 3. Home Page
 <p align="center">
-  <img src="static/images/demo_result.png" alt="Correction Result" width="600">
+  <img src="static/pic_finalproject/home_page.png" alt="Home Page" width="600">
 </p>
 
-### 4. Correction History
+### 4. Enter Correctly
 <p align="center">
-  <img src="static/images/demo_history.png" alt="User History" width="600">
+  <img src="static/pic_finalproject/enter_correctly.png" alt="Enter Correctly" width="600">
+</p>
+
+### 5. Enter Incorrectly
+<p align="center">
+  <img src="static/pic_finalproject/enter_incorrectly.png" alt="Enter Incorrectly" width="600">
+</p>
+
+### 5. Enter Incorrectly
+<p align="center">
+  <img src="static/pic_finalproject/enter_incorrectly.png" alt="Enter Incorrectly" width="600">
+</p>
+
+### 5. Enter Incorrectly
+<p align="center">
+  <img src="static/pic_finalproject/enter_incorrectly.png" alt="Enter Incorrectly" width="600">
 </p>
