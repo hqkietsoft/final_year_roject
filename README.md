@@ -99,7 +99,7 @@ The system is built upon a Large Language Model (LLM) fine-tuned specifically fo
 
 ### 3. Home Page
 <p align="center">
-  <img src="static/pic_finalproject/home_page.png" alt="Home Page" width="600">
+  <img src="static/pic_finalproject/homepage.png" alt="Home Page" width="600">
 </p>
 
 ### 4. Enter Correctly
@@ -117,7 +117,22 @@ The system is built upon a Large Language Model (LLM) fine-tuned specifically fo
   <img src="static/pic_finalproject/enter_incorrectly.png" alt="Enter Incorrectly" width="600">
 </p>
 
-### 5. Enter Incorrectly
+### 6. Fixed
 <p align="center">
-  <img src="static/pic_finalproject/enter_incorrectly.png" alt="Enter Incorrectly" width="600">
+  <img src="static/pic_finalproject/fixed.png" alt="Fixed" width="600">
+</p>
+
+### 7. AI Suggestions
+<p align="center">
+  <img src="static/pic_finalproject/ai_suggestions.png" alt="AI Suggestions" width="600">
+</p>
+
+### 8. Import File
+<p align="center">
+  <img src="static/pic_finalproject/import_file.png" alt="Import File" width="600">
+</p>
+
+### 9. Import Voice
+<p align="center">
+  <img src="static/pic_finalproject/import_voice.png" alt="Import Voice" width="600">
 </p>
