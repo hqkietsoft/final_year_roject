@@ -87,52 +87,47 @@ The system is built upon a Large Language Model (LLM) fine-tuned specifically fo
 
 ## 🖼 Interface Demo
 
-### 1. Login Screen
+### 1. Login Interface
 <p align="center">
-  <img src="static/pic_finalproject/login.png" alt="Login Screen" width="600">
+  <img src="static/pic_finalproject/login.png" alt="Login Interface" width="600">
 </p>
 
-### 2. Register Screen
+### 2. Registration Interface
 <p align="center">
-  <img src="static/pic_finalproject/register.png" alt="Register Screen" width="600">
+  <img src="static/pic_finalproject/register.png" alt="Registration Interface" width="600">
 </p>
 
-### 3. Home Page
+### 3. Home Dashboard
 <p align="center">
-  <img src="static/pic_finalproject/homepage.png" alt="Home Page" width="600">
+  <img src="static/pic_finalproject/homepage.png" alt="Home Dashboard" width="600">
 </p>
 
-### 4. Enter Correctly
+### 4. Input Validation: Valid State
 <p align="center">
-  <img src="static/pic_finalproject/enter_correctly.png" alt="Enter Correctly" width="600">
+  <img src="static/pic_finalproject/enter_correctly.png" alt="Valid Input State" width="600">
 </p>
 
-### 5. Enter Incorrectly
+### 5. Input Validation: Error Detection
 <p align="center">
-  <img src="static/pic_finalproject/enter_incorrectly.png" alt="Enter Incorrectly" width="600">
+  <img src="static/pic_finalproject/enter_incorrectly.png" alt="Error Detection" width="600">
 </p>
 
-### 5. Enter Incorrectly
+### 6. Correction Result
 <p align="center">
-  <img src="static/pic_finalproject/enter_incorrectly.png" alt="Enter Incorrectly" width="600">
+  <img src="static/pic_finalproject/fixed.png" alt="Correction Result" width="600">
 </p>
 
-### 6. Fixed
-<p align="center">
-  <img src="static/pic_finalproject/fixed.png" alt="Fixed" width="600">
-</p>
-
-### 7. AI Suggestions
+### 7. AI-Powered Suggestions
 <p align="center">
   <img src="static/pic_finalproject/ai_suggestions.png" alt="AI Suggestions" width="600">
 </p>
 
-### 8. Import File
+### 8. File Import Feature
 <p align="center">
-  <img src="static/pic_finalproject/import_file.png" alt="Import File" width="600">
+  <img src="static/pic_finalproject/import_file.png" alt="File Import Feature" width="600">
 </p>
 
-### 9. Import Voice
+### 9. Voice Input Feature
 <p align="center">
-  <img src="static/pic_finalproject/import_voice.png" alt="Import Voice" width="600">
+  <img src="static/pic_finalproject/voice_input.png" alt="Voice Input Feature" width="600">
 </p>
