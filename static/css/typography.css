@@ -1,0 +1,144 @@
+/* Keyboard shortcuts */
+kbd {
+    display: inline-block;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--text-primary);
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.shortcuts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.shortcut-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+}
+
+/* Word type colors */
+.subject { background-color: #e6f7ff; color: #0050b3; }
+.verb { background-color: #f6ffed; color: #389e0d; }
+.object { background-color: #fff7e6; color: #d46b08; }
+.complement { background-color: #fff0f6; color: #c41d7f; }
+.adverb { background-color: #f9f0ff; color: #722ed1; }
+.adjective { background-color: #f0f5ff; color: #1d39c4; }
+.conjunction { background-color: #fffbe6; color: #ad8b00; }
+.preposition { background-color: #e6fffb; color: #006d75; }
+.pronoun { background-color: #fcffe6; color: #5b8c00; }
+.article { background-color: #fff2e8; color: #ad4e00; }
+.interjection { background-color: #ffccc7; color: #a8071a; }
+.noun { background-color: #e6f7ff; color: #1890ff; }
+.determiner { background-color: #e6f4ff; color: #096dd9; }
+.punctuation { background-color: #f5f5f5; color: #595959; }
+
+/* Sentence Analysis Styles */
+.sentence-analysis {
+    margin-top: 24px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.analysis-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.analysis-title::before {
+    content: '•';
+    color: #3b82f6;
+    font-size: 28px;
+    line-height: 0;
+    margin-top: -2px;
+}
+
+.word-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.word-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    background-color: #f9fafb;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+}
+
+.word-text {
+    font-size: 0.875rem;
+    color: #111827;
+}
+
+.word-type {
+    font-size: 0.75rem;
+    color: #6b7280;
+    padding: 2px 6px;
+    background-color: #f3f4f6;
+    border-radius: 4px;
+}
+
+/* Word type colors */
+.word-item.noun { border-left: 2px solid #3b82f6; }
+.word-item.verb { border-left: 2px solid #10b981; }
+.word-item.pronoun { border-left: 2px solid #f59e0b; }
+.word-item.article { border-left: 2px solid #8b5cf6; }
+.word-item.adjective { border-left: 2px solid #ec4899; }
+.word-item.adverb { border-left: 2px solid #6366f1; }
+.word-item.preposition { border-left: 2px solid #14b8a6; }
+.word-item.conjunction { border-left: 2px solid #f97316; }
+.word-item.punctuation { border-left: 2px solid #6b7280; }
+
+/* Word Component Colors */
+.word-component.subject { background-color: #e6f7ff; border-color: #91d5ff; }
+.word-component.verb { background-color: #f6ffed; border-color: #b7eb8f; }
+.word-component.object { background-color: #fff7e6; border-color: #ffd591; }
+.word-component.complement { background-color: #fff0f6; border-color: #ffadd2; }
+.word-component.adverb { background-color: #f9f0ff; border-color: #d3adf7; }
+.word-component.adjective { background-color: #f0f5ff; border-color: #adc6ff; }
+.word-component.conjunction { background-color: #fffbe6; border-color: #ffe58f; }
+.word-component.preposition { background-color: #e6fffb; border-color: #87e8de; }
+.word-component.pronoun { background-color: #fcffe6; border-color: #d9f7be; }
+.word-component.article { background-color: #fff2e8; border-color: #ffd8bf; }
+.word-component.interjection { background-color: #ffccc7; border-color: #ffa39e; }
+.word-component.noun { background-color: #e6f7ff; border-color: #91d5ff; }
+.word-component.determiner { background-color: #e6f4ff; border-color: #91caff; }
+.word-component.punctuation { background-color: #f5f5f5; border-color: #d9d9d9; }
+
+/* Component Colors */
+.component.subject { background-color: #e6f7ff; }
+.component.verb { background-color: #f6ffed; }
+.component.object { background-color: #fff7e6; }
+.component.complement { background-color: #fff0f6; }
+.component.adverb { background-color: #f9f0ff; }
+.component.adjective { background-color: #f0f5ff; }
+.component.conjunction { background-color: #fffbe6; }
+.component.preposition { background-color: #e6fffb; }
+.component.pronoun { background-color: #fcffe6; }
+.component.article { background-color: #fff2e8; }
+.component.interjection { background-color: #ffccc7; }
+.component.noun { background-color: #e6f7ff; }
+.component.determiner { background-color: #e6f4ff; }
+.component.punctuation { background-color: #f5f5f5; }

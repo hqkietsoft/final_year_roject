@@ -1,0 +1,13 @@
+THỐNG KÊ HUẤN LUYỆN MÔ HÌNH COEDIT-LARGE
+========================================
+
+Mô hình: coedit-large
+Mô hình gốc: google/flan-t5-large
+Số tham số: 770M
+Số epochs: 5
+Tổng số bước huấn luyện: 27830
+Loss ban đầu: 0.9801
+Loss cuối cùng: 0.3693
+Loss trung bình: 0.5302
+Loss thấp nhất: 0.3056
+Giảm loss: 62.32%

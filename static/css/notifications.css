@@ -1,0 +1,133 @@
+/* Basic notification container */
+.notification {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+    max-width: 300px;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.notification i {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+/* Notification types */
+.notification-success {
+    border-left-color: var(--success-color);
+    background: linear-gradient(135deg, #e6ffe6, #ffffff);
+}
+
+.notification-success i {
+    color: var(--success-color);
+}
+
+.notification-warning {
+    border-left-color: var(--warning-color);
+    background: linear-gradient(135deg, #fffbe6, #ffffff);
+}
+
+.notification-warning i {
+    color: var(--warning-color);
+}
+
+.notification-error {
+    border-left-color: var(--error-color);
+    background: linear-gradient(135deg, #ffe6e6, #ffffff);
+}
+
+.notification-error i {
+    color: var(--error-color);
+}
+
+/* Enhanced error messages */
+.error-item {
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--error-color);
+    transition: transform 0.2s ease;
+}
+
+.error-item:hover {
+    transform: translateX(4px);
+}
+
+.error-context {
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.error-correction {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: white;
+    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+}
+
+.error-original {
+    color: var(--error-color);
+    text-decoration: line-through;
+}
+
+.error-corrected {
+    color: var(--success-color);
+    font-weight: 500;
+}
+
+/* Toast notifications */
+.toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.toast {
+    background-color: var(--bg-primary);
+    border-left: 4px solid var(--primary-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 250px;
+    max-width: 350px;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}

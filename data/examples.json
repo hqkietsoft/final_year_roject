@@ -1,0 +1,27 @@
+[
+    {
+      "original": "We iss walk the park tomorrow",
+      "corrected": "We will walk in the park tomorrow",
+      "error_type": "grammar"
+    },
+    {
+      "original": "She don't like cats",
+      "corrected": "She doesn't like cats",
+      "error_type": "subject-verb agreement"
+    },
+    {
+      "original": "He go to school everyday",
+      "corrected": "He goes to school everyday",
+      "error_type": "subject-verb agreement"
+    },
+    {
+      "original": "I have ate lunch already",
+      "corrected": "I have eaten lunch already",
+      "error_type": "verb form"
+    },
+    {
+      "original": "This is a apple",
+      "corrected": "This is an apple",
+      "error_type": "article usage"
+    }
+  ]

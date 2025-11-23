@@ -1,0 +1,55 @@
+2025-04-10 03:38:07,131 - __main__ - INFO - Loading model from models/coedit-large
+2025-04-10 03:38:14,063 - __main__ - INFO - Model loaded successfully
+2025-04-10 03:38:14,085 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.101:5000
+2025-04-10 03:38:14,086 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-10 03:38:14,089 - werkzeug - INFO -  * Restarting with stat
+2025-04-10 03:38:17,769 - __main__ - INFO - Loading model from models/coedit-large
+2025-04-10 03:38:27,008 - __main__ - INFO - Model loaded successfully
+2025-04-10 03:38:27,064 - werkzeug - WARNING -  * Debugger is active!
+2025-04-10 03:38:27,073 - werkzeug - INFO -  * Debugger PIN: 132-419-733
+2025-04-10 03:38:36,509 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "GET / HTTP/1.1" 200 -
+2025-04-10 03:38:36,714 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-10 03:38:36,805 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-10 03:38:36,906 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/css/reset.css HTTP/1.1[0m" 304 -
+2025-04-10 03:38:36,907 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+2025-04-10 03:38:36,909 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/css/layout.css HTTP/1.1[0m" 304 -
+2025-04-10 03:38:36,914 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/css/typography.css HTTP/1.1[0m" 304 -
+2025-04-10 03:38:36,915 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/css/animations.css HTTP/1.1[0m" 304 -
+2025-04-10 03:38:36,918 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/css/components.css HTTP/1.1[0m" 304 -
+2025-04-10 03:38:36,923 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/css/notifications.css HTTP/1.1[0m" 304 -
+2025-04-10 03:38:36,926 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2025-04-10 03:38:36,929 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/js/analysis.js HTTP/1.1[0m" 304 -
+2025-04-10 03:38:36,933 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/js/ai-suggestions.js HTTP/1.1[0m" 304 -
+2025-04-10 03:38:36,934 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/js/editor.js HTTP/1.1[0m" 304 -
+2025-04-10 03:38:36,935 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/js/grammar.js HTTP/1.1[0m" 304 -
+2025-04-10 03:38:36,945 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:38:36] "[36mGET /static/js/utils.js HTTP/1.1[0m" 304 -
+2025-04-10 03:39:48,172 - __main__ - INFO - Model loaded successfully
+2025-04-10 03:39:48,187 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.101:5000
+2025-04-10 03:39:48,187 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-10 03:39:48,189 - werkzeug - INFO -  * Restarting with stat
+2025-04-10 03:39:58,748 - __main__ - INFO - Model loaded successfully
+2025-04-10 03:39:58,788 - werkzeug - WARNING -  * Debugger is active!
+2025-04-10 03:39:58,794 - werkzeug - INFO -  * Debugger PIN: 132-419-733
+2025-04-10 03:39:58,943 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:58] "GET / HTTP/1.1" 200 -
+2025-04-10 03:39:58,980 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-10 03:39:58,983 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:58] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-10 03:39:59,034 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:59] "[36mGET /static/css/reset.css HTTP/1.1[0m" 304 -
+2025-04-10 03:39:59,037 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:59] "[36mGET /static/css/variables.css HTTP/1.1[0m" 304 -
+2025-04-10 03:39:59,075 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:59] "[36mGET /static/css/components.css HTTP/1.1[0m" 304 -
+2025-04-10 03:39:59,075 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:59] "[36mGET /static/css/layout.css HTTP/1.1[0m" 304 -
+2025-04-10 03:39:59,102 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:59] "[36mGET /static/css/typography.css HTTP/1.1[0m" 304 -
+2025-04-10 03:39:59,103 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:59] "[36mGET /static/css/animations.css HTTP/1.1[0m" 304 -
+2025-04-10 03:39:59,108 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:59] "[36mGET /static/css/notifications.css HTTP/1.1[0m" 304 -
+2025-04-10 03:39:59,176 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:59] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2025-04-10 03:39:59,177 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:59] "[36mGET /static/js/editor.js HTTP/1.1[0m" 304 -
+2025-04-10 03:39:59,177 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:59] "[36mGET /static/js/grammar.js HTTP/1.1[0m" 304 -
+2025-04-10 03:39:59,178 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:59] "[36mGET /static/js/analysis.js HTTP/1.1[0m" 304 -
+2025-04-10 03:39:59,178 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:59] "[36mGET /static/js/ai-suggestions.js HTTP/1.1[0m" 304 -
+2025-04-10 03:39:59,208 - werkzeug - INFO - 127.0.0.1 - - [10/Apr/2025 03:39:59] "[36mGET /static/js/utils.js HTTP/1.1[0m" 304 -
+2025-04-10 03:40:11,976 - werkzeug - INFO -  * Restarting with stat

@@ -1,0 +1,40 @@
+/* Animation Keyframes */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateX(-50%) translateY(-40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes highlight-pulse {
+    0% { background-color: transparent; }
+    20% { background-color: rgba(239, 68, 68, 0.1); }
+    100% { background-color: transparent; }
+}
+
+/* Element animations */
+.highlight {
+    animation: highlight-pulse 1.5s ease;
+}
+
+.error-highlight {
+    text-decoration: underline wavy #ef4444;
+    cursor: pointer;
+}

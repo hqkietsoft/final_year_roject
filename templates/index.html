@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Structure Checker - Check and improve your English text structure and grammar">
+    <title>Structure Checker - Document Editor</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+    <!-- Add this right before the closing head tag -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+
+    <!-- Add this at the top of the body tag -->
+    {% if user %}
+    <div id="user-data" data-name="{{ user.name }}" style="display: none;"></div>
+    {% endif %}
+
+    <!-- Add this right before the closing body tag -->
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <header class="app-header">
+            <div class="logo">
+                <i class="fa-solid fa-check-double"></i>
+                <h1>Structure Checker</h1>
+            </div>
+            <div class="header-actions">
+                <!-- Modify the login-register-button to navigate to a page instead of showing modal -->
+                <button class="btn-outline" id="login-register-button" title="Login/Register" onclick="window.location.href='/login'">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="button-label">Login/Register</span>
+                </button>
+                <button class="btn-outline" id="help-button" title="Help & Tips">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span class="button-label">Help</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="toolbar-container">
+            <div class="toolbar-left">
+                <div class="document-score" id="document-score">
+                    <div class="score-badge">--</div>
+                    <span>Overall score</span>
+                </div>
+            </div>
+            <div class="toolbar-right">
+                <button class="btn-outline" id="speech-to-text" title="Speech to text">
+                    <i class="fa-solid fa-microphone"></i>
+                    <span class="button-label">Voice</span>
+                </button>
+                <button class="btn-outline" id="import-file" title="Import file">
+                    <i class="fa-solid fa-file-import"></i>
+                    <span class="button-label">Import</span>
+                </button>
+                <button class="btn-outline" id="clear-text" title="Clear text">
+                    <i class="fa-solid fa-eraser"></i>
+                    <span class="button-label">Clear</span>
+                </button>
+                <button class="btn-outline" id="save-document" title="Save document">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span class="button-label">Save</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="editor-container">
+                <div class="editor" contenteditable="true" id="text-editor" aria-label="Text editor" role="textbox"
+                    style="font-size: 1.2rem;"></div>
+                <div class="placeholder" style="font-size: 1.1rem;">
+                    Enter or paste (Ctrl+V) the English text that needs structure checking here.</div>
+            </div>
+        </div>
+
+        <div class="formatting-bar">
+            <div class="formatting-group">
+                <button title="Bold (Ctrl+B)" class="format-btn" id="format-bold">
+                    <i class="fa-solid fa-bold"></i>
+                </button>
+                <button title="Italic (Ctrl+I)" class="format-btn" id="format-italic">
+                    <i class="fa-solid fa-italic"></i>
+                </button>
+                <button title="Underline (Ctrl+U)" class="format-btn" id="format-underline">
+                    <i class="fa-solid fa-underline"></i>
+                </button>
+            </div>
+
+            <div class="formatting-group">
+                <button title="Heading 1" class="format-btn" id="format-h1">
+                    <i class="fa-solid fa-heading"></i><sup>1</sup>
+                </button>
+                <button title="Heading 2" class="format-btn" id="format-h2">
+                    <i class="fa-solid fa-heading"></i><sup>2</sup>
+                </button>
+            </div>
+
+            <div class="formatting-group">
+                <button title="Font size" class="format-btn" id="format-font-size">
+                    <i class="fa-solid fa-text-height"></i>
+                </button>
+                <div class="font-size-dropdown">
+                    <div class="font-size-option" data-size="6">Small</div>
+                    <div class="font-size-option" data-size="13">Normal</div>
+                    <div class="font-size-option" data-size="17">Large</div>
+                    <div class="font-size-option" data-size="21">Huge</div>
+                </div>
+            </div>
+
+            <div class="formatting-group">
+                <button title="Insert link" class="format-btn" id="format-link">
+                    <i class="fa-solid fa-link"></i>
+                </button>
+                <button title="Bulleted list" class="format-btn" id="format-ul">
+                    <i class="fa-solid fa-list-ul"></i>
+                </button>
+                <button title="Numbered list" class="format-btn" id="format-ol">
+                    <i class="fa-solid fa-list-ol"></i>
+                </button>
+            </div>
+
+            <div class="formatting-group">
+                <button title="Clear formatting" class="format-btn" id="format-clear">
+                    <i class="fa-solid fa-remove-format"></i>
+                </button>
+            </div>
+
+            <div class="word-count" id="word-count">
+                <i class="fa-solid fa-font"></i> <span>0 words</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="tab-buttons">
+            <button class="tab-button active" id="grammar-tab">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <div>Check results</div>
+            </button>
+            <button class="tab-button" id="ai-tab">
+                <i class="fa-solid fa-lightbulb"></i>
+                <div>Improvement suggestions</div>
+            </button>
+        </div>
+
+        <div class="tab-content" id="grammar-content">
+            <div class="empty-state" id="empty-state">
+                <div class="magic-icon">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <h3>Enter text and press "Check structure"</h3>
+                <p>The results of the sentence structure check will be displayed here.</p>
+                <div class="tips" style="display: flex; justify-content: center; width: 100%; margin-top: 1rem;">
+                    <div class="tip-item" style="text-align: center; display: flex; 
+    flex-direction: column; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-keyboard" style="font-size: 1.25rem;"></i>
+                        <span>Press <kbd>Ctrl+Enter</kbd> for quick check</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Checking structure...</p>
+            </div>
+
+            <div id="error-results" class="results-container" style="display: none;">
+            </div>
+        </div>
+
+        <div class="tab-content" id="ai-content" style="display: none;">
+            <div class="empty-state">
+                <div class="magic-icon">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <h3>Text improvement suggestions</h3>
+                <p>AI will analyze and provide suggestions to improve sentence structure, vocabulary, and writing style.</p>
+                <button class="btn-primary btn-generate-suggestions" id="generate-suggestions">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>Generate suggestions</span>
+                </button>
+            </div>
+        
+            <div id="ai-suggestions" class="results-container" style="display: none;">
+                <!-- AI suggestions will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+<div class="modal" id="help-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>User Guide</h2>
+            <button class="close-modal">×</button>
+        </div>
+        <div class="modal-body">
+            <h3>How to use Structure Checker</h3>
+            <ol>
+                <li>Enter or paste English text into the editing area</li>
+                <li>Press the "Check structure" button or <kbd>Ctrl+Enter</kbd></li>
+                <li>View the check results in the panel on the right</li>
+                <li>Apply the suggested modifications</li>
+            </ol>
+            <h3>Shortcuts</h3>
+            <div class="shortcuts">
+                <div class="shortcut-item">
+                    <kbd>Ctrl+B</kbd> <span>Bold formatting</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>Ctrl+I</kbd> <span>Italic formatting</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>Ctrl+U</kbd> <span>Underline</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>Ctrl+Enter</kbd> <span>Check structure</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+<!-- Voice recording overlay -->
+<div id="voice-overlay" class="voice-overlay hidden">
+    <div class="voice-animation-container">
+        <div class="voice-pulse-rings">
+            <div class="pulse-ring"></div>
+            <div class="pulse-ring"></div>
+            <div class="pulse-ring"></div>
+        </div>
+        <div class="microphone-container">
+            <i class="fa-solid fa-microphone"></i>
+        </div>
+        <div class="voice-visualizer">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <p class="voice-status">Listening...</p>
+    </div>
+</div>
+<input type="file" id="file-input" accept=".txt,.doc,.docx,.pdf" style="display: none;">
+
+</html>

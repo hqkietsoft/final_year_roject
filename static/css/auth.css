@@ -1,0 +1,256 @@
+.auth-container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 2rem;
+    background-color: #f7f9fc;
+    box-sizing: border-box;
+
+    /* Professional gradient background with improved colors */
+    background: linear-gradient(135deg, #3a5dd9 0%, #7986cb 50%, #64b5f6 100%);
+    overflow: hidden;
+    position: relative;
+    /* Ensure proper positioning of pseudo-elements */
+}
+
+/* Add decorative background elements with subtle animation */
+.auth-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    z-index: 0;
+    animation: subtle-float 20s infinite linear;
+}
+
+/* Add a second decorative layer for depth */
+.auth-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 40%, transparent 60%);
+    z-index: 0;
+}
+
+/* Light glare effect on top */
+.auth-container .glare {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: rotate(-45deg);
+    z-index: 1;
+}
+
+/* Subtle animation for the pattern */
+@keyframes subtle-float {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 60px 60px;
+    }
+}
+
+/* Style the auth header and logo */
+.auth-header {
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 450px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative;
+    z-index: 1;
+}
+
+.auth-header .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-size: 1.2em;
+}
+
+.auth-header .logo i {
+    font-size: 2rem;
+}
+
+.auth-header .logo h1 {
+    font-weight: 600;
+}
+
+/* Enhance the auth card with more depth and animation */
+.auth-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 450px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 0.5s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.auth-card h2 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.auth-card form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 1.25rem;
+}
+
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-group input:focus {
+    border-color: #4a6ee0;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 110, 224, 0.15);
+}
+
+.form-actions {
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-actions button {
+    width: 100%;
+    padding: 0.85rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.form-actions p {
+    font-size: 0.9rem;
+    color: #718096;
+}
+
+.form-actions a {
+    color: #4a6ee0;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.form-actions a:hover {
+    text-decoration: underline;
+}
+
+.auth-error {
+    background-color: #fed7d7;
+    color: #c53030;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.back-link {
+    width: 100%;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.btn-back {
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Update existing button styling */
+.btn-primary {
+    background-color: #4a6ee0;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #3b5ccc;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid #4a6ee0;
+    color: #4a6ee0;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background-color: rgba(74, 110, 224, 0.05);
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

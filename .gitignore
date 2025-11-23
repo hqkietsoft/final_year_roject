@@ -1,0 +1,7 @@
+new_env/
+venv/
+*.pt
+*.bin
+*.db
+instance/
+__pycache__/

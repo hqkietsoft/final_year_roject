@@ -1,0 +1,20 @@
+flask==2.3.3
+torch==2.0.1
+transformers==4.30.0
+accelerate==0.20.3
+huggingface-hub==0.15.1
+# flask-login==0.6.2
+
+# Thư viện web và xử lý
+nltk==3.8.1
+numpy==1.24.3
+sentencepiece
+pyspellchecker
+google-generativeai
+flask-sqlalchemy==3.0.3
+
+# Các thư viện bổ sung
+spacy==3.7.2
+pandas==2.1.1
+matplotlib
+psutil
