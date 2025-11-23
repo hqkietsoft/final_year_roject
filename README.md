@@ -56,7 +56,7 @@ The system is built upon a Large Language Model (LLM) fine-tuned specifically fo
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/sieuga2712/FinalYearProject.git](https://github.com/sieuga2712/FinalYearProject.git)
+    git clone https://github.com/hqkietsoft/final_year_roject
     cd FinalYearProject
     ```
 
