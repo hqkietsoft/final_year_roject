@@ -19,6 +19,26 @@
 
 ---
 
+## 📸 Product & System Screenshots
+
+### 1. User Interface (Web App)
+The application features a clean, responsive interface built with HTML5/CSS3 and Flask Templates.
+
+| **Home Page & Input** | **Correction & Syntax Analysis** |
+|:---:|:---:|
+| ![Home Page](docs/images/home_ui.png) | ![Analysis Result](docs/images/result_ui.png) |
+| *Simple input interface for raw text* | *Real-time grammar correction & POS Tagging visualization* |
+
+### 2. DevOps & Infrastructure (Under the Hood)
+Evidence of the automated pipeline and cloud infrastructure.
+
+| **CI/CD Pipeline (GitHub Actions)** | **AWS & Docker Deployment** |
+|:---:|:---:|
+| ![CI/CD Logs](docs/images/cicd_pipeline.png) | ![Docker Container](docs/images/docker_run.png) |
+| *Automated Build & Push to Docker Hub* | *Container running on AWS EC2 with Volume Mapping* |
+
+---
+
 ## ⚙️ Technical Architecture & Stack
 
 | Category | Tools & Technologies |
@@ -35,7 +55,7 @@
 This project showcases practical solutions to real-world infrastructure challenges on limited resources (AWS Free Tier):
 
 ### 1. Resource Optimization (OOM Killer Mitigation)
-- **Challenge:** The `t2.micro` instance (1GB RAM) consistently crashed when loading the 3.13GB T5 Model due to Out-Of-Memory (OOM) errors.
+- **Challenge:** The `t3.micro` instance (1GB RAM) consistently crashed when loading the 3.13GB T5 Model due to Out-Of-Memory (OOM) errors.
 - **Solution:** Implemented a **4GB Swap File** on the Linux filesystem to extend virtual memory, allowing the heavy AI model to run smoothly on a low-cost instance.
 
 ### 2. Zero-Downtime Storage Scaling
