@@ -21,29 +21,29 @@
 
 ## 📸 Product Screenshots
 
-### 1. Core Workflow (Quy trình chính)
-Trải nghiệm người dùng mượt mà từ việc nhập liệu đến nhận kết quả phân tích AI.
+### 1. Core Workflow
+Smooth user experience from input to receiving AI analysis results.
 
 | **Smart Editor Interface** | **AI Error Detection** |
 |:---:|:---:|
 | ![Home](docs/images/homepage.png) | ![Analysis](docs/images/enter_incorrectly.png) |
-| *Giao diện soạn thảo sạch sẽ, tập trung* | *Phát hiện lỗi ngữ pháp & Phân tích cú pháp thời gian thực* |
+| *Clean, focused editing interface* | *Grammar error detection & Real-time syntax analysis* |
 
-### 2. Advanced Features (Tính năng nâng cao)
-Hỗ trợ đa phương thức nhập liệu và gợi ý thông minh.
+### 2. Advanced Features
+Multi-modal input support and intelligent suggestions.
 
 | **AI Suggestions** | **Voice Input Support** |
 |:---:|:---:|
 | ![Suggestions](docs/images/ai_suggestions.png) | ![Voice](docs/images/voice_input.png) |
-| *Gợi ý chỉnh sửa văn phong tự nhiên* | *Tích hợp nhận diện giọng nói (Speech-to-Text)* |
+| *Natural writing style editing suggestions* | *Speech-to-Text integration* |
 
 ### 3. User Management
-Hệ thống quản lý người dùng bảo mật.
+Secure user management system.
 
 | **Secure Login** | **Registration** |
 |:---:|:---:|
 | ![Login](docs/images/login.png) | ![Register](docs/images/register.png) |
-| *Đăng nhập bảo mật với Session Management* | *Đăng ký tài khoản người dùng mới* |
+| *Secure login with Session Management* | *New user account registration* |
 
 ---
 
