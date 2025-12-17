@@ -12,7 +12,7 @@
 
 | Project Info | Details |
 |:--- |:--- |
-| **Live Demo** | `http://18.143.152.130/` *(Note: Dynamic IP, subject to change)* |
+| **Live Demo** | `http://18.141.221.183/` *(Note: Dynamic IP, subject to change)* |
 | **Core Model** | T5 Transformer (`grammarly/coedit-large`) |
 | **Backend Stack** | Python 3.9, Flask, PyTorch, Hugging Face Transformers |
 | **Build Status** | ![Build Status](https://img.shields.io/badge/build-passing-brightgreen) |
