@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # 1. App NLP (Sửa lại port để khớp với Nginx Host)
+  api:
+    build: .
+    container_name: english_parser_app
+    ports:
+      # Map port 5000 của Host vào port 8000 của Container
+      # Vì Nginx của bạn đang proxy_pass http://localhost:5000
+      - "5000:8000" 
+    environment:
+      - LOG_LEVEL=INFO
+    networks:
+      - app_network
+
+  # (Đã xóa service nginx ở đây vì bạn dùng nginx của host)
+
+  # =========================================
+  # MONITORING STACK
+  # =========================================
+
+  loki:
+    image: grafana/loki:2.9.0
+    container_name: monitoring_loki
+    volumes:
+      - ./monitoring/loki/loki-config.yaml:/etc/loki/local-config.yaml
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - app_network
+
+  promtail:
+    image: grafana/promtail:3.0.0
+    container_name: monitoring_promtail
+    privileged: true
+    user: root # Chạy quyền root để đọc được file log của Host
+    ports:              # <--- THÊM ĐOẠN NÀY
+      - "9080:9080"
+    volumes:
+      - ./monitoring/promtail/promtail-config.yaml:/etc/promtail/config.yaml
+      - //var/run/docker.sock:/var/run/docker.sock
+      # [QUAN TRỌNG] Mount thư mục log Nginx từ Host vào Container
+      - /var/log/nginx:/var/log/nginx:ro
+    command: -config.file=/etc/promtail/config.yaml
+    depends_on:
+      - loki
+    networks:
+      - app_network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: monitoring_grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - loki
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
