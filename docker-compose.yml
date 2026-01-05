@@ -3,12 +3,13 @@ version: '3.8'
 services:
   # 1. App NLP (Sửa lại port để khớp với Nginx Host)
   api:
-    build: .
+    # build: .
+    image: hqkietsoft/english-syntax-parser:latest
     container_name: english_parser_app
     ports:
       # Map port 5000 của Host vào port 8000 của Container
       # Vì Nginx của bạn đang proxy_pass http://localhost:5000
-      - "5000:8000" 
+      - "5000:5000" 
     environment:
       - LOG_LEVEL=INFO
     networks:
@@ -78,5 +79,3 @@ services:
 networks:
   app_network:
     driver: bridge
-
-    
