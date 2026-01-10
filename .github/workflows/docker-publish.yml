@@ -25,45 +25,46 @@ jobs:
           push: true
           tags: hqkietsoft/english-syntax-parser:latest
 
-  # Job 2: Deploy song song 2 server
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    
-    # --- PHẦN QUAN TRỌNG: MA TRẬN SERVER ---
-    strategy:
-      matrix:
-        include:
-          # Cấu hình Server Thủ công
-          - name: Old-Manual-Server
-            host: ${{ secrets.EC2_HOST }}
-            user: ${{ secrets.EC2_USER }}
-            key: ${{ secrets.EC2_SSH_KEY }}
-
-          # Cấu hình Server Mới (Terraform)
-          - name: New-Terraform-Server
-            host: ${{ secrets.EC2_HOST_TF }}
-            user: ${{ secrets.EC2_USER_TF }}
-            key: ${{ secrets.EC2_SSH_KEY_TF }}
-    # ---------------------------------------
-
     steps:
-      - name: Deploy to ${{ matrix.name }}
+      # --------------------------------------------------------
+      # SERVER Thủ công
+      # --------------------------------------------------------
+      - name: Deploy to Old Manual Server
+        uses: appleboy/ssh-action@v1.0.0
+        continue-on-error: true 
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd english-syntax-parser
+            git pull origin master
+            docker compose pull
+            docker compose up -d --remove-orphans
+            docker image prune -f
+
+      # --------------------------------------------------------
+      # SERVER MỚI (Terraform + Ansible)
+      # --------------------------------------------------------
+      - name: Deploy to New Terraform Server
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ matrix.host }}
-          username: ${{ matrix.user }}
-          key: ${{ matrix.key }}
+          host: ${{ secrets.EC2_HOST_TF }}
+          username: ${{ secrets.EC2_USER_TF }}
+          key: ${{ secrets.EC2_SSH_KEY_TF }}
           script: |
             mkdir -p english-syntax-parser
             cd english-syntax-parser
-
+            
             if [ -d ".git" ]; then
               git pull origin master
             else
               git clone https://github.com/hqkietsoft/english-syntax-parser.git .
             fi
-            
+
             docker compose pull
             docker compose up -d --remove-orphans
             docker image prune -f
