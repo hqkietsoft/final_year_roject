@@ -1,13 +1,13 @@
 terraform {
   required_providers {
     aws = {
-        source = "hashicorp/aws"
-        version = "~> 5.0"
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
     }
   }
 }
 
-# Terraform tự đi tìm AMI
+# Terraform tự đi tìm AMI (Amazon Linux 2023)
 data "aws_ami" "amazon_linux_2023" {
   most_recent = true
   owners      = ["amazon"]
@@ -22,95 +22,157 @@ provider "aws" {
   region = "ap-southeast-1"
 }
 
-# Security Group (mở cổng mạng)
+# =================================================================
+# 1. SECURITY GROUP
+# =================================================================
 resource "aws_security_group" "app_sg" {
-  name = "english_parser_sg"
-  description = "Allow SSH, HTTP and App ports"
+  name        = "swarm_sg"
+  description = "Allow SSH, HTTP, Swarm ports"
 
-  # mở SSH (22)
+  # SSH
   ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # mở Web App (5000)
+  # Web App (Port 5000)
   ingress {
-    from_port = 5000
-    to_port = 5000
-    protocol = "tcp"
+    from_port   = 5000
+    to_port     = 5000
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # mở Grafana (3000)
+  # Grafana (Port 3000)
   ingress {
-    from_port = 3000
-    to_port = 3000
-    protocol = "tcp"
+    from_port   = 3000
+    to_port     = 3000
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # cho phép ra ngoài thoải mái (tải package)
+  # Swarm Management (Cluster Management)
+  ingress {
+    from_port = 2377
+    to_port   = 2377
+    protocol  = "tcp"
+    self      = true
+  }
+
+  # Node Communication (TCP)
+  ingress {
+    from_port = 7946
+    to_port   = 7946
+    protocol  = "tcp"
+    self      = true
+  }
+
+  # Node Communication (UDP)
+  ingress {
+    from_port = 7946
+    to_port   = 7946
+    protocol  = "udp"
+    self      = true
+  }
+
+  # Overlay Network (UDP)
+  ingress {
+    from_port = 4789
+    to_port   = 4789
+    protocol  = "udp"
+    self      = true
+  }
+
+  # Egress (Cho phép ra ngoài thoải mái)
   egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
-# (+) tạo Key Pair (SSH vào server)
-# tạo thuật toán mã hoá
+# =================================================================
+# 2. KEY PAIR (SSH KEY)
+# =================================================================
 resource "tls_private_key" "pk" {
   algorithm = "RSA"
-  rsa_bits = 4096
+  rsa_bits  = 4096
 }
 
-# đẩy public key lên AWS
 resource "aws_key_pair" "kp" {
-  key_name = "my-terraform-key"
+  key_name   = "my-terraform-key"
   public_key = tls_private_key.pk.public_key_openssh
 }
 
-# lưu private key vào máy local
 resource "local_file" "ssh_key" {
-  filename = "${path.module}/key/ansible_key.pem"
-  content = tls_private_key.pk.private_key_pem
-  file_permission = "0400" # chỉ chủ sở hữu được đọc
+  filename        = "${path.module}/key/ansible_key.pem"
+  content         = tls_private_key.pk.private_key_pem
+  file_permission = "0400" 
 }
 
-# (+) tạo server
-resource "aws_instance" "app_server" {
-  ami = data.aws_ami.amazon_linux_2023.id #AWS Amazon Linus 2023 (Singapore)
+# =================================================================
+# 3. INSTANCES (CẤU HÌNH SWARM CLUSTER)
+# =================================================================
+
+# --- MÁY MANAGER ---
+resource "aws_instance" "manager" {
+  ami           = data.aws_ami.amazon_linux_2023.id
   instance_type = "t3.micro"
-
-  key_name = aws_key_pair.kp.key_name
+  key_name      = aws_key_pair.kp.key_name
   vpc_security_group_ids = [aws_security_group.app_sg.id]
-
+  
+  # Giữ cấu hình ổ cứng 30GB gp3 cho mạnh
   root_block_device {
-    volume_size = 30     
-    volume_type = "gp3"   
+    volume_size           = 30
+    volume_type           = "gp3"
     delete_on_termination = true
   }
 
+  tags = { Name = "Swarm-Manager" }
+}
+
+# --- MÁY WORKERS (2 MÁY) ---
+resource "aws_instance" "worker" {
+  count         = 2
+  ami           = data.aws_ami.amazon_linux_2023.id
+  instance_type = "t3.micro" 
+  key_name      = aws_key_pair.kp.key_name
+  vpc_security_group_ids = [aws_security_group.app_sg.id]
+
+  # Cũng cho Worker 30GB ổ cứng
+  root_block_device {
+    volume_size           = 30
+    volume_type           = "gp3"
+    delete_on_termination = true
+  }
+
+  tags = { Name = "Swarm-Worker-${count.index + 1}" }
+}
+
+# =================================================================
+# 4. ELASTIC IP (IP TĨNH CHO MANAGER)
+# =================================================================
+resource "aws_eip" "manager_eip" {
+  instance = aws_instance.manager.id
+  domain   = "vpc"
+
   tags = {
-    Name = "EnglishParser-Terraform"
+    Name = "Swarm-Manager-IP"
   }
 }
 
-# (+) tạo IP tĩnh (Elastic IP) gắn vào instance
-resource "aws_eip" "app_eip" {
-  instance = aws_instance.app_server.id
-  domain = "vpc"
-
-  tags = {
-    Name = "EnglishParser-Static-IP"
-  }
+# =================================================================
+# 5. OUTPUT
+# =================================================================
+output "manager_ip" {
+  value       = aws_eip.manager_eip.public_ip
+  description = "IP Tĩnh của Swarm Manager"
 }
 
-# (+) in kết quả ra màn hình
-output "final_public_ip" {
-  value = aws_eip.app_eip.public_ip
-  description = "IP Tĩnh của server"
+output "worker_ips" {
+  value       = aws_instance.worker[*].public_ip
+  description = "IP Public của các Worker Nodes"
 }
