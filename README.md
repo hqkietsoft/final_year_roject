@@ -1,21 +1,25 @@
-# 🤖 AI-Powered English Grammar Corrector & Syntax Parser
+# 🤖 High-Availability AI English Grammar Corrector
 
 ![Python](https://img.shields.io/badge/Python-3.9-blue?logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Framework-Flask-green?logo=flask&logoColor=white)
 ![AWS](https://img.shields.io/badge/Cloud-AWS-orange?logo=amazon-aws&logoColor=white)
-![Docker](https://img.shields.io/badge/Container-Docker-blue?logo=docker&logoColor=white)
-![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=github-actions&logoColor=white)
+![Terraform](https://img.shields.io/badge/IaC-Terraform-7B42BC?logo=terraform&logoColor=white)
+![Ansible](https://img.shields.io/badge/Config-Ansible-EE0000?logo=ansible&logoColor=white)
+![Docker Swarm](https://img.shields.io/badge/Orchestrator-Docker%20Swarm-2496ED?logo=docker&logoColor=white)
+![Grafana](https://img.shields.io/badge/Monitoring-Grafana-F46800?logo=grafana&logoColor=white)
 
 ## 💡 Project Overview
 
-**English Grammar Corrector** is a real-time web application (API) leveraging the **T5 Transformer model** to perform syntax parsing and grammar correction. The project demonstrates a complete **DevOps lifecycle**, from containerization with Docker to automated deployment on AWS Cloud using CI/CD pipelines.
+**English Grammar Corrector** is a real-time web application leveraging the **T5 Transformer model** (`grammarly/coedit-large`) for syntax parsing and grammar correction.
+
+Unlike typical deployments, this project is engineered on a **3-node High-Availability Docker Swarm Cluster**, provisioned fully by **Terraform** and configured via **Ansible**. It features a **Zero-Downtime CI/CD pipeline** and a comprehensive **PLG Monitoring Stack** (Prometheus, Loki, Grafana).
 
 | Project Info | Details |
 |:--- |:--- |
-| **Live Demo** | `http://52.74.192.203/` |
+| **Live Demo** | `http://52.74.192.203/` (Swarm Manager IP) |
+| **Architecture** | 3-Node Cluster (1 Manager, 2 Workers) on AWS |
 | **Core Model** | T5 Transformer (`grammarly/coedit-large`) |
-| **Backend Stack** | Python 3.9, Flask, PyTorch, Hugging Face Transformers |
-| **Build Status** | ![Build Status](https://img.shields.io/badge/build-passing-brightgreen) |
+| **Observability** | Full Monitoring (CPU/RAM/Logs) via Grafana |
 
 ---
 
@@ -27,53 +31,53 @@ Smooth user experience from input to receiving AI analysis results.
 | **Smart Editor Interface** | **AI Error Detection** |
 |:---:|:---:|
 | ![Home](docs/images/homepage.png) | ![Analysis](docs/images/enter_incorrectly.png) |
-| *Clean, focused editing interface* | *Grammar error detection & Real-time syntax analysis* |
+| *Clean, focused editing interface* | *Real-time syntax analysis* |
 
-### 2. Advanced Features
-Multi-modal input support and intelligent suggestions.
-
-| **AI Suggestions** | **Voice Input Support** |
-|:---:|:---:|
-| ![Suggestions](docs/images/ai_suggestions.png) | ![Voice](docs/images/voice_input.png) |
-| *Natural writing style editing suggestions* | *Speech-to-Text integration* |
-
-### 3. User Management
-Secure user management system.
-
-| **Secure Login** | **Registration** |
-|:---:|:---:|
-| ![Login](docs/images/login.png) | ![Register](docs/images/register.png) |
-| *Secure login with Session Management* | *New user account registration* |
+*(Screenshots for Advanced Features & User Management omitted for brevity but included in repo)*
 
 ---
 
-## ⚙️ Technical Architecture & Stack
+## ⚙️ Enterprise-Grade Architecture
+
+This project moves beyond simple containerization to a robust, scalable infrastructure:
 
 | Category | Tools & Technologies |
 |:--- |:--- |
-| **Cloud Infrastructure** | **AWS EC2** (t2.micro/t3.micro), **EBS** (Volume Management), **Amazon Linux 2023** |
-| **Containerization** | **Docker** (Multi-stage build), **Docker Volumes** (Model Caching) |
-| **DevOps & CI/CD** | **GitHub Actions** (Automated Build & Push to Docker Hub), **Nginx** (Reverse Proxy) |
-| **Networking & OS** | Security Groups, SSH Tunneling, Linux Administration (Systemctl, Bash Scripting) |
+| **Infrastructure as Code** | **Terraform**: Automates provisioning of AWS VPC, Subnets, Security Groups, and EC2 instances. |
+| **Configuration Mgmt** | **Ansible**: Automates Docker installation, Swap creation, and Cluster joining (Manager/Worker tokens). |
+| **Orchestration** | **Docker Swarm**: Manages a 3-node cluster with **Overlay Networking** for internal security. |
+| **CI/CD Pipeline** | **GitHub Actions**: Implements **Rolling Updates** strategy for Zero-Downtime deployment. |
+| **Monitoring (PLG)** | **Prometheus** (Metrics), **Loki** (Logs), **Grafana** (Visualization), **Node Exporter** (Hardware Stats). |
 
 ---
 
-## 🧠 Technical Highlights & Problem Solving
+## 🧠 DevOps Engineering Highlights
 
-This project showcases practical solutions to real-world infrastructure challenges on limited resources (AWS Free Tier):
+This project showcases practical solutions to complex infrastructure challenges on limited cloud resources:
 
-### 1. Resource Optimization (OOM Killer Mitigation)
-- **Challenge:** The `t3.micro` instance (1GB RAM) consistently crashed when loading the 3.13GB T5 Model due to Out-Of-Memory (OOM) errors.
-- **Solution:** Implemented a **4GB Swap File** on the Linux filesystem to extend virtual memory, allowing the heavy AI model to run smoothly on a low-cost instance.
+### 1. High Availability & Fault Tolerance
+- **Architecture:** Deployed on a **3-node Swarm Cluster**. If a worker node fails, the Swarm Orchestrator automatically reschedules containers to healthy nodes.
+- **Load Balancing:** Configured **Nginx** as an Ingress Controller (Entrypoint) to load-balance traffic across replicas using Docker's internal Mesh Routing.
 
-### 2. Zero-Downtime Storage Scaling
-- **Challenge:** Encountered `no space left on device` error during Docker image pulling (Image size > 8GB).
-- **Solution:** Performed **Live EBS Volume Resizing** (8GB → 30GB) and expanded the XFS filesystem (`xfs_growfs`) without stopping the instance.
+### 2. Zero-Downtime Deployment Strategy
+- **Challenge:** Deploying heavy AI models typically causes downtime during startup (10-30s model loading time).
+- **Solution:** Implemented **Rolling Updates** with `order: start-first` and **Healthchecks**.
+    - The new container must pass a health check (verifying the model is loaded via `curl`) before traffic is routed to it.
+    - The old container is only terminated *after* the new one is healthy.
 
-### 3. Model Caching Strategy
-- **Solution:** Utilized **Docker Volumes** to map the Hugging Face cache from the host to the container (`-v /hf_cache:/root/.cache`). This eliminates the need to re-download the 3GB model on every container restart, significantly reducing startup time and bandwidth usage.
+### 3. Dynamic Service Discovery & Monitoring
+- **Challenge:** In a dynamic cluster, containers change IPs frequently, making static monitoring impossible.
+- **Solution:** Configured **Prometheus Service Discovery (`dns_sd_configs`)**. Prometheus automatically queries the Docker DNS to find and scrape metrics from all active replicas and Node Exporters across the fleet without manual configuration.
 
-### 4. Reverse Proxy Tuning
-- **Solution:** Configured **Nginx** as a reverse proxy with extended `proxy_read_timeout` (300s) to handle long-running AI inference requests, preventing 504 Gateway Timeouts.
+### 4. Cost Optimization (Running Giants on Dwarfs)
+- **Challenge:** The T5 Model requires ~3GB RAM, but AWS `t3.micro` instances only provide 1GB RAM, leading to immediate OOM Kills.
+- **Solution:**
+    - Automated **4GB Swap File** creation via Ansible to extend virtual memory.
+    - Optimized Kernel parameters (`vm.swappiness`) to handle memory paging efficiently.
+    - Result: Successfully running a heavy NLP stack on the lowest-cost AWS tier.
+
+### 5. Infrastructure Automation
+- **Challenge:** Managing SSH keys and dependencies across Windows (Local) and Linux (Cloud) is error-prone.
+- **Solution:** Developed cross-platform scripts and Terraform configurations to automatically handle SSH Key permissions and inventory generation for Ansible.
 
 ---
