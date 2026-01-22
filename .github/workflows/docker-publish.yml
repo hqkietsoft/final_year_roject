@@ -30,7 +30,7 @@ jobs:
     needs: build
     steps:
       # --------------------------------------------------------
-      # 1. SERVER CŨ (Manual)
+      # 1. SERVER CŨ
       # --------------------------------------------------------
       - name: Deploy to Old Manual Server
         uses: appleboy/ssh-action@v1.0.0
@@ -62,7 +62,6 @@ jobs:
           username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY_TF }}
           script: |
-            # 1. Pull code mới nhất về Manager
             mkdir -p english-syntax-parser
             cd english-syntax-parser
             
@@ -72,17 +71,12 @@ jobs:
               git clone https://github.com/hqkietsoft/english-syntax-parser.git .
             fi
             
-            # 2. Tạo thư mục chứa model (nếu cần mount volume)
             mkdir -p model_weights
 
-            # 3. Pull image mới nhất về máy Manager trước
             docker pull hqkietsoft/english-syntax-parser:latest
 
-            # 4. Deploy Stack
             docker stack deploy -c docker-compose.yml app_stack --with-registry-auth
             
-            # 5. Cập nhật Service (Bắt buộc để force update container)
             docker service update --image hqkietsoft/english-syntax-parser:latest app_stack_api --force
 
-            # 6. Dọn dẹp image rác
             docker image prune -f
